@@ -1,0 +1,83 @@
+
+
+DELIMITER //
+
+CREATE PROCEDURE BiblioMenu()
+BEGIN
+    DECLARE opmenu INT;
+	SET opmenu =1;
+    BiblioAppMenuLoop: LOOP
+        -- Mostrar opciones del menú
+        SELECT '1. Registrar un libro en el catálogo' AS MenuOption;
+        SELECT '2. Eliminar un libro del catálogo' AS MenuOption;
+        SELECT '3. Buscar un libro por título.' AS MenuOption;
+        SELECT '4. Buscar un libro por ISBN' AS MenuOption;
+        SELECT '5. Abastecer ejemplares de un libro' AS MenuOption;
+        SELECT '6. Vender ejemplares de un libro' AS MenuOption;
+        SELECT '7. Calcular la cantidad de transacciones de abastecimiento de un libro particular' AS MenuOption;
+        SELECT '8. Buscar el libro más costoso' AS MenuOption;
+        SELECT '9. Buscar el libro menos costoso' AS MenuOption;
+        SELECT '10. Buscar el libro más vendido.' AS MenuOption;
+        SELECT '0. Salir de la aplicación' AS MenuOption;
+
+        -- Pedir al usuario que elija una opción
+        SELECT 'Ingrese el número de la opción deseada:' INTO opmenu;
+        SET opmenu = IFNULL(opmenu, -1);
+
+        -- Ejecutar la opción seleccionada
+        CASE opmenu
+            
+            WHEN 1 THEN
+                SELECT 'Su opcion es 1'
+                SELECT 'Registre un libro nuevo en el catalogo';
+              
+            WHEN 2 THEN
+    		SELECT 'Su opcion es 2'
+                SELECT 'Elimine un libro del catalogo';
+            
+            WHEN 3 THEN
+                SELECT 'Su opcion es 3'
+                SELECT 'Digite el titulo del libro que desea buscar';
+             
+            WHEN 4 THEN 
+   		SELECT 'Su opcion es 4'
+    		SELECT 'Digite el ISBN del libro que desea buscar';
+                
+   	    WHEN 5 THEN
+    		SELECT 'Su opcion es 5'
+                SELECT 'Digite cuantas unidades desea abastecer de un libro';
+                
+            WHEN 6 THEN
+   		SELECT 'Su opcion es 6'
+                SELECT 'Digite cuantas unidades desea vender';
+                
+            WHEN 7 THEN
+    		SELECT 'Su opcion es 7'
+                SELECT 'Calcular la cantidad de transacciones de abastecimiento de un libro particular';
+                
+            WHEN 8 THEN
+    		SELECT 'Su opcion es 8'
+                SELECT 'A continuacion se muestra el libro mas costoso';
+                
+            WHEN 9 THEN
+    		SELECT 'Su opcion es 9'
+                SELECT 'A continuacion se muestra el libro menos costoso';
+                
+            WHEN 10 THEN 
+    		SELECT 'Su opcion es 10'
+                SELECT 'A continucion se muestra el libro mas vendido';
+                
+            WHEN 0 THEN
+                LEAVE BiblioAppMenuLoop;
+            ELSE
+                SELECT 'Opción no válida. Inténtelo de nuevo.';
+        END CASE;
+    END LOOP BiblioAppMenuLoop;
+END //
+
+DELIMITER ;
+
+-- Llamar al procedimiento para iniciar el menú
+use bandapp;
+CALL BandAppMenu;
+
